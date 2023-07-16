@@ -4,11 +4,26 @@ pipeline {
         stage('Git Checkout'){
             steps {
                 script{
-                    git branch: 'main', url: 'https://github.com/ugvenkat/helloworld-java-app.git'
+
+                    gitCheckout(
+                        branch: "main", 
+                        url: "https://github.com/ugvenkat/helloworld-java-app.git"
+                    )
+
                 }
-            }
+            } 
             
         }
+
+        stage('Unit Test Maven'){
+            steps {
+                script{
+                    mvnTest()
+                }
+            } 
+            
+        }
+
     }
 
 }
